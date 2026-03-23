@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { sahityaAsset } from "./sahitya-assets";
+import { getAwardeeDetail } from "./awardee-descriptions";
 
 const BASE = path.join(process.cwd(), "public", "sahitya-assets");
 
@@ -17,6 +18,10 @@ export type EditionAwardee = {
   /** Author portrait URL, or "" when only book assets exist in the folder. */
   photoSrc: string;
   books: EditionBook[];
+  /** Award category label (e.g. "कादंबरी" / "Novel"), injected when detail data exists. */
+  category?: string;
+  /** Award citation / description text, injected when detail data exists. */
+  description?: string;
 };
 
 function normalizeName(value: string): string {
@@ -125,7 +130,7 @@ export function getAwardeesByYear(year: number) {
  * Structured awardees for edition pages: folder layout yields author + book covers;
  * flat files become a single image with no separate book assets.
  */
-export function getEditionAwardeesDetailed(year: number): EditionAwardee[] {
+export function getEditionAwardeesDetailed(year: number, locale?: string): EditionAwardee[] {
   const subdir = `${year} Awardees and Books`;
   const full = path.join(BASE, subdir);
   if (!fs.existsSync(full)) return [];
@@ -206,9 +211,21 @@ export function getEditionAwardeesDetailed(year: number): EditionAwardee[] {
     });
   }
 
-  return results.sort((a, b) =>
+  const sorted = results.sort((a, b) =>
     a.author.localeCompare(b.author, undefined, { sensitivity: "base" }),
   );
+
+  // Enrich with award category + description when available
+  const loc = (locale ?? "mr") as "en" | "mr";
+  for (const awardee of sorted) {
+    const detail = getAwardeeDetail(year, awardee.author);
+    if (detail) {
+      awardee.category = detail.category[loc] ?? detail.category.mr;
+      awardee.description = detail.description[loc] ?? detail.description.mr;
+    }
+  }
+
+  return sorted;
 }
 
 export function getJuryByYear(year: number) {
@@ -216,24 +233,41 @@ export function getJuryByYear(year: number) {
 }
 
 export function getPhotoFeature() {
-  const images = listImages("photo feature");
-  const pinnedTitles = [
-    "shri vijay j darda ji",
-    "shri rajendra darda ji",
-    "shri devendra darda ji",
+  const GALLERY_BASE = path.join(process.cwd(), "public", "gallery");
+
+  // Gallery folder: Darda photos shown first in fixed order
+  const galleryImages: EditionImage[] = [];
+  if (fs.existsSync(GALLERY_BASE)) {
+    for (const file of fs.readdirSync(GALLERY_BASE)) {
+      if (file.startsWith(".") || file === "Thumbs.db") continue;
+      if (!/\.(jpe?g|png|webp)$/i.test(file)) continue;
+      galleryImages.push({
+        src: "/gallery/" + encodeURIComponent(file),
+        title: humanizeFilenameTitle(file),
+      });
+    }
+  }
+
+  const galleryPinnedOrder = [
+    "shri vijay j darda",
+    "rajendra darda",
+    "shri devendra darda",
   ];
-
-  const rank = new Map<string, number>();
-  pinnedTitles.forEach((title, idx) => rank.set(title, idx));
-
-  return [...images].sort((a, b) => {
-    const aRank = rank.get(normalizeForPriority(a.title));
-    const bRank = rank.get(normalizeForPriority(b.title));
-
-    if (aRank !== undefined && bRank !== undefined) return aRank - bRank;
-    if (aRank !== undefined) return -1;
-    if (bRank !== undefined) return 1;
-
+  const galleryRank = new Map<string, number>();
+  galleryPinnedOrder.forEach((t, i) => galleryRank.set(t, i));
+  galleryImages.sort((a, b) => {
+    const ar = galleryRank.get(normalizeForPriority(a.title));
+    const br = galleryRank.get(normalizeForPriority(b.title));
+    if (ar !== undefined && br !== undefined) return ar - br;
+    if (ar !== undefined) return -1;
+    if (br !== undefined) return 1;
     return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
   });
+
+  // Photo feature images — exclude any Darda photos already covered by gallery/
+  const photoFeatureImages = listImages("photo feature").filter(
+    (img) => !normalizeForPriority(img.title).includes("darda"),
+  );
+
+  return [...galleryImages, ...photoFeatureImages];
 }

@@ -248,35 +248,40 @@ export function MagazineAwardYearSection({
             onClick={() => setActiveAwardee(null)}
             aria-label={d.gallery.lightboxClose}
           />
-          <div className="relative z-[111] w-full max-w-xl rounded-2xl bg-white p-6 shadow-[0_30px_70px_rgba(28,25,23,0.3)] md:p-8">
-            <div className="flex items-start justify-between gap-4">
+          <div className="relative z-[111] w-full max-w-xl overflow-y-auto rounded-2xl bg-white shadow-[0_30px_70px_rgba(28,25,23,0.3)] md:max-h-[85vh]">
+            <div className="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-t-2xl bg-white px-6 pb-4 pt-6 md:px-8 md:pt-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">
                   {year}
                 </p>
-                <h4 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold text-stone-900">
+                <h4 className="mt-1 font-[family-name:var(--font-display)] text-2xl font-semibold text-stone-900 md:text-3xl">
                   {activeAwardee.author}
                 </h4>
+                {activeAwardee.category && (
+                  <span className="mt-2 inline-block rounded-full bg-stone-100 px-3 py-0.5 text-xs font-semibold text-stone-700 ring-1 ring-stone-300">
+                    {activeAwardee.category}
+                  </span>
+                )}
               </div>
               <button
                 type="button"
                 onClick={() => setActiveAwardee(null)}
-                className="rounded-full bg-stone-100 px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-200"
+                className="shrink-0 rounded-full bg-stone-100 px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-200"
               >
                 {d.gallery.lightboxClose}
               </button>
             </div>
 
-            <div className="mt-5 space-y-3 text-stone-700">
+            <div className="space-y-4 px-6 pb-6 text-stone-700 md:px-8 md:pb-8">
               {activeAwardee.books[0] ? (
-                <p>
+                <p className="text-sm">
                   <span className="font-semibold text-stone-900">{d.edition.bookLabel}:</span>{" "}
                   {activeAwardee.books[0].title}
                 </p>
               ) : null}
 
               {activeAwardee.books.length > 1 ? (
-                <div>
+                <div className="text-sm">
                   <p className="font-semibold text-stone-900">More recognised works:</p>
                   <ul className="mt-1 list-disc space-y-1 pl-5">
                     {activeAwardee.books.slice(1).map((book) => (
@@ -285,6 +290,10 @@ export function MagazineAwardYearSection({
                   </ul>
                 </div>
               ) : null}
+
+              {activeAwardee.description && (
+                <p className="text-base leading-relaxed">{activeAwardee.description}</p>
+              )}
             </div>
           </div>
         </div>

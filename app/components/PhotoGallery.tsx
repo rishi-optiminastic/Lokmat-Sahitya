@@ -71,7 +71,7 @@ export function PhotoGallery({ images, d }: Props) {
               key={img.src}
               type="button"
               onClick={() => setActive(i)}
-              className="group mb-3 w-full break-inside-avoid overflow-hidden rounded-xl bg-slate-100 shadow-[var(--shadow-sm)] ring-1 ring-slate-200/40 md:mb-4"
+              className="group mb-3 w-full break-inside-avoid overflow-hidden rounded-xl bg-[#f5f3ef] shadow-[var(--shadow-sm)] ring-1 ring-slate-200/40 md:mb-4"
             >
               <div className="relative">
                 <Image
@@ -83,6 +83,9 @@ export function PhotoGallery({ images, d }: Props) {
                   sizes="(max-width:640px) 50vw, 25vw"
                 />
               </div>
+              <p className="px-3 py-2.5 text-center text-sm font-medium leading-snug text-stone-700">
+                {img.title}
+              </p>
             </button>
           ))}
         </div>

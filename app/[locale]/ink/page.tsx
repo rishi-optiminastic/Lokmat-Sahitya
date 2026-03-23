@@ -90,7 +90,7 @@ export default async function InkHome({ params }: PageProps) {
                 <MagazineAwardYearSection
                   key={year}
                   year={year}
-                  awardees={getEditionAwardeesDetailed(year)}
+                  awardees={getEditionAwardeesDetailed(year, locale)}
                   jury={getJuryByYear(year)}
                   d={d}
                   locale={locale}

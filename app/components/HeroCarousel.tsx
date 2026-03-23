@@ -73,7 +73,8 @@ export function HeroCarousel({ slides, labels }: Props) {
               alt=""
               fill
               priority={i === 0}
-              className="object-cover object-center"
+              className="object-cover"
+              style={{ objectPosition: slide.objectPosition ?? "center 50%" }}
               sizes="100vw"
             />
             <div

@@ -78,9 +78,10 @@ export function V3Hero({ slides, labels }: Props) {
               alt=""
               fill
               priority={i === 0}
-              className={`object-cover object-center transition-transform duration-[8000ms] ease-out ${
+              className={`object-cover transition-transform duration-[8000ms] ease-out ${
                 active ? "scale-105" : "scale-100"
               }`}
+              style={{ objectPosition: slide.objectPosition ?? "center 50%" }}
               sizes="100vw"
             />
             <div

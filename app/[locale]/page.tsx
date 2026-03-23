@@ -64,7 +64,7 @@ export default async function Home({ params }: PageProps) {
             <AwardYearSection
               key={year}
               year={year}
-              awardees={getEditionAwardeesDetailed(year)}
+              awardees={getEditionAwardeesDetailed(year, locale)}
               jury={getJuryByYear(year)}
               d={d}
               locale={locale}

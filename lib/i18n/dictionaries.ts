@@ -23,6 +23,7 @@ export type Dictionary = {
     juryHeading: string;
     juryCaption: string;
     bookLabel: string;
+    categoryLabel: string;
     portraitAlt: string;
     bookAlt: string;
     juryEmpty: string;
@@ -85,6 +86,18 @@ const en: Dictionary = {
     ],
     slides: [
       {
+        title: "Vijay Darda",
+        subtitle: "Chairman, Lokmat Media Group",
+      },
+      {
+        title: "Rajendra Darda",
+        subtitle: "Editor-in-Chief, Lokmat",
+      },
+      {
+        title: "Devendra Darda",
+        subtitle: "Executive Director, Lokmat Media Group",
+      },
+      {
         title: "Gadkari Rangayatan (2023)",
         subtitle: "A packed auditorium of literature enthusiasts at Gadkari Rangayatan.",
       },
@@ -120,6 +133,7 @@ const en: Dictionary = {
     juryCaption:
       "Readers and practitioners who shaped the honours for this year.",
     bookLabel: "Awarded work",
+    categoryLabel: "Category",
     portraitAlt: "Portrait — {name}",
     bookAlt: "Book — {title}",
     juryEmpty: "Jury portraits are not in the archive folder for this year yet.",
@@ -193,6 +207,18 @@ const mr: Dictionary = {
     ],
     slides: [
       {
+        title: "विजय दर्डा",
+        subtitle: "अध्यक्ष, लोकमत मीडिया ग्रुप",
+      },
+      {
+        title: "राजेंद्र दर्डा",
+        subtitle: "संपादक-प्रमुख, लोकमत",
+      },
+      {
+        title: "देवेंद्र दर्डा",
+        subtitle: "कार्यकारी संचालक, लोकमत मीडिया ग्रुप",
+      },
+      {
         title: "गडकरी रंगायतन (२०२३)",
         subtitle: "गडकरी रंगायतनमध्ये साहित्य रसिकांनी खच्चून भरलेले सभागृह.",
       },
@@ -227,6 +253,7 @@ const mr: Dictionary = {
     juryHeading: "ज्युरी",
     juryCaption: "या वर्षी निवड प्रक्रियेत सहभागी साहित्यिक व वाचक.",
     bookLabel: "पुरस्कृत कृति",
+    categoryLabel: "श्रेणी",
     portraitAlt: "प्रतिमा — {name}",
     bookAlt: "पुस्तक — {title}",
     juryEmpty: "या वर्षासाठी ज्युरीच्या प्रतिमा अद्याप संग्रहात नाहीत.",

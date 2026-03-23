@@ -58,11 +58,11 @@ export function SplitHeroCarousel({ slides, labels }: Props) {
 
   return (
     <section
-      className="grid min-h-[min(100svh,920px)] grid-cols-1 lg:grid-cols-2"
+      className="grid h-[min(100svh,920px)] grid-cols-1 overflow-hidden lg:grid-cols-2"
       aria-roledescription="carousel"
       aria-label={labels.ariaCarousel}
     >
-      <div className="relative order-2 flex min-h-[45vh] flex-col justify-between gap-10 bg-[#f0ebe3] px-6 py-10 lg:order-1 lg:min-h-full lg:px-12 lg:py-14">
+      <div className="relative order-2 flex h-[45vh] flex-col justify-between gap-10 overflow-y-auto bg-[#f0ebe3] px-6 py-10 lg:order-1 lg:h-full lg:overflow-visible lg:px-12 lg:py-14">
         <div className="space-y-6">
           <p className="max-w-md text-sm leading-relaxed text-stone-600">
             {slide.subtitle}
@@ -111,7 +111,7 @@ export function SplitHeroCarousel({ slides, labels }: Props) {
         </div>
       </div>
 
-      <div className="relative order-1 min-h-[min(55vh,560px)] lg:order-2 lg:min-h-full">
+      <div className="relative order-1 h-[min(55vh,560px)] overflow-hidden lg:order-2 lg:h-full">
         {slides.map((s, i) => (
           <div
             key={s.src}
@@ -125,7 +125,8 @@ export function SplitHeroCarousel({ slides, labels }: Props) {
               alt=""
               fill
               priority={i === 0}
-              className="object-cover object-center"
+              className="object-cover"
+              style={{ objectPosition: s.objectPosition ?? "center 50%" }}
               sizes="(max-width:1024px) 100vw, 50vw"
             />
             <div

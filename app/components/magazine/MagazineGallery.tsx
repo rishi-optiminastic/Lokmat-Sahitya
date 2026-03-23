@@ -75,15 +75,20 @@ export function MagazineGallery({ images, d }: Props) {
                 key={img.src}
                 type="button"
                 onClick={() => setActive(i)}
-                className="group relative h-[min(52vh,420px)] w-[min(72vw,340px)] shrink-0 snap-center overflow-hidden bg-stone-200 shadow-[0_16px_48px_rgba(28,25,23,0.12)] md:h-[min(56vh,480px)] md:w-[min(38vw,380px)]"
+                className="group relative shrink-0 snap-center overflow-hidden bg-stone-200 shadow-[0_16px_48px_rgba(28,25,23,0.12)]"
               >
-                <Image
-                  src={img.src}
-                  alt={img.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                  sizes="380px"
-                />
+                <div className="relative h-[min(52vh,420px)] w-[min(72vw,340px)] md:h-[min(56vh,480px)] md:w-[min(38vw,380px)]">
+                  <Image
+                    src={img.src}
+                    alt={img.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    sizes="380px"
+                  />
+                </div>
+                <p className="bg-[#f5f3ef] px-3 py-2.5 text-center text-sm font-medium text-stone-700">
+                  {img.title}
+                </p>
               </button>
             ))}
           </div>

@@ -30,9 +30,9 @@ export function SiteHeader({ locale, d }: Props) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background,box-shadow] duration-300 ${headerBg}`}
+      className={`fixed inset-x-0 top-0 z-50  duration-300 ${headerBg}`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 md:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 md:px-6">
         <Link href={`/${locale}`} className="group flex min-w-0 flex-col leading-tight">
           <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-500 transition-colors group-hover:text-sky-600">
             {d.brand.lokmat}
@@ -57,12 +57,12 @@ export function SiteHeader({ locale, d }: Props) {
               {d.nav.video}
             </a>
           </nav>
-          <Link
+          {/* <Link
             href={`/${locale}/ink`}
             className="inline-flex shrink-0 rounded-full bg-sky-500/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-sky-700 ring-1 ring-sky-500/25 transition hover:bg-sky-500/15 sm:text-[11px]"
           >
             {d.designSwitch.toInk}
-          </Link>
+          </Link> */}
           <LanguageSwitcher />
         </div>
       </div>

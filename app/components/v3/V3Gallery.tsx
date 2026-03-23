@@ -66,7 +66,7 @@ export function V3Gallery({ images, d }: Props) {
               key={img.src}
               type="button"
               onClick={() => setActive(i)}
-              className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl bg-slate-100 shadow-[0_1px_4px_rgba(15,23,42,0.04)] transition duration-300 hover:shadow-[0_8px_28px_rgba(15,23,42,0.1)]"
+              className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl bg-[#f5f3ef] shadow-[0_1px_4px_rgba(15,23,42,0.04)] transition duration-300 hover:shadow-[0_8px_28px_rgba(15,23,42,0.1)]"
             >
               <Image
                 src={img.src}
@@ -76,6 +76,9 @@ export function V3Gallery({ images, d }: Props) {
                 className="h-auto w-full object-cover transition duration-500 group-hover:scale-[1.04]"
                 sizes="(max-width:640px) 50vw, 25vw"
               />
+              <p className="px-3 py-2.5 text-center text-sm font-medium leading-snug text-stone-700">
+                {img.title}
+              </p>
             </button>
           ))}
         </div>

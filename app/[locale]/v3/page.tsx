@@ -50,7 +50,7 @@ export default async function V3Page({ params }: PageProps) {
   const photoFeature = getPhotoFeature();
 
   return (
-    <div className="min-h-full bg-[#f8fafc] text-slate-900 antialiased">
+    <div className="min-h-full bg-[#faf9f7] text-slate-900 antialiased">
       <V3Header locale={locale} d={d} />
 
       <V3Hero slides={slides} labels={carouselLabels} />
@@ -77,7 +77,7 @@ export default async function V3Page({ params }: PageProps) {
             <V3AwardSection
               key={year}
               year={year}
-              awardees={getEditionAwardeesDetailed(year)}
+              awardees={getEditionAwardeesDetailed(year, locale)}
               jury={getJuryByYear(year)}
               d={d}
               locale={locale}
@@ -96,7 +96,7 @@ export default async function V3Page({ params }: PageProps) {
         </div>
       </main>
 
-      <footer className="mt-16 border-t border-slate-100 bg-slate-50/80 py-12 text-center">
+      <footer className="mt-16 border-t border-stone-200/60 bg-[#f5f4f0] py-12 text-center">
         <p className="text-sm text-slate-400">{d.footer}</p>
       </footer>
     </div>
