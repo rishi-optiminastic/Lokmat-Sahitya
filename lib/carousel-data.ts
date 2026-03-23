@@ -8,7 +8,7 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     src: "/hero-1/2023.jpg",
   },
   {
-    src: "/hero-1/Coram Mall.jpg",
+    src: "/hero-1/Korum Mall.jpg",
   },
   {
     src: "/hero-1/2025 Award.jpg",
