@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { EditionAwardee, EditionImage } from "@/lib/editions";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
+import { getJuryProfile } from "@/lib/jury-profiles";
 
 type Props = {
   year: number;
   awardees: EditionAwardee[];
   jury: EditionImage[];
   d: Dictionary;
+  locale: string;
 };
 
 /**
@@ -18,12 +23,16 @@ export function MagazineAwardYearSection({
   awardees,
   jury,
   d,
+  locale,
 }: Props) {
+  const [activeAwardee, setActiveAwardee] = useState<EditionAwardee | null>(null);
+
   return (
-    <section
-      id={`year-${year}`}
-      className="scroll-mt-32 space-y-12 border-t border-stone-200/80 pt-16 first:border-t-0 first:pt-0"
-    >
+    <>
+      <section
+        id={`year-${year}`}
+        className="scroll-mt-32 space-y-12 border-t border-stone-200/80 pt-16 first:border-t-0 first:pt-0"
+      >
       <div className="relative overflow-hidden">
         <p
           className="pointer-events-none select-none font-[family-name:var(--font-display)] text-[clamp(3.5rem,12vw,7.5rem)] font-bold leading-none text-stone-100"
@@ -48,9 +57,12 @@ export function MagazineAwardYearSection({
           const reverse = idx % 2 === 1;
 
           return (
-            <article
+            <button
               key={a.photoSrc || a.books[0]?.src || a.author}
-              className="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-[0_20px_50px_rgba(28,25,23,0.07)] ring-1 ring-stone-200/70"
+              type="button"
+              onClick={() => setActiveAwardee(a)}
+              className="mx-auto block w-full max-w-5xl overflow-hidden rounded-2xl bg-white text-left shadow-[0_20px_50px_rgba(28,25,23,0.07)] ring-1 ring-stone-200/70"
+              aria-label={d.edition.portraitAlt.replace("{name}", a.author)}
             >
               {hasBooks && hasPortrait ? (
                 <div className="grid md:grid-cols-2 md:gap-0">
@@ -176,7 +188,7 @@ export function MagazineAwardYearSection({
                   </div>
                 </div>
               )}
-            </article>
+            </button>
           );
         })}
       </div>
@@ -214,11 +226,69 @@ export function MagazineAwardYearSection({
                 <p className="text-center text-sm font-medium leading-snug text-stone-800">
                   {j.title}
                 </p>
+                <p className="text-center text-xs leading-relaxed text-stone-600">
+                  {getJuryProfile(j.title, locale)}
+                </p>
               </div>
             ))}
           </div>
         )}
       </div>
-    </section>
+      </section>
+
+      {activeAwardee && (
+        <div
+          className="fixed inset-0 z-[110] flex items-end bg-stone-950/70 p-4 md:items-center md:justify-center"
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            className="absolute inset-0"
+            onClick={() => setActiveAwardee(null)}
+            aria-label={d.gallery.lightboxClose}
+          />
+          <div className="relative z-[111] w-full max-w-xl rounded-2xl bg-white p-6 shadow-[0_30px_70px_rgba(28,25,23,0.3)] md:p-8">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">
+                  {year}
+                </p>
+                <h4 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold text-stone-900">
+                  {activeAwardee.author}
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveAwardee(null)}
+                className="rounded-full bg-stone-100 px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-200"
+              >
+                {d.gallery.lightboxClose}
+              </button>
+            </div>
+
+            <div className="mt-5 space-y-3 text-stone-700">
+              {activeAwardee.books[0] ? (
+                <p>
+                  <span className="font-semibold text-stone-900">{d.edition.bookLabel}:</span>{" "}
+                  {activeAwardee.books[0].title}
+                </p>
+              ) : null}
+
+              {activeAwardee.books.length > 1 ? (
+                <div>
+                  <p className="font-semibold text-stone-900">More recognised works:</p>
+                  <ul className="mt-1 list-disc space-y-1 pl-5">
+                    {activeAwardee.books.slice(1).map((book) => (
+                      <li key={book.src}>{book.title}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -32,6 +32,15 @@ function humanizeFilenameTitle(filename: string): string {
   return filename.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
 }
 
+function normalizeForPriority(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 /** Title from awardee folder names like `Prasad_Nikte` or `Dr_Milind_Kulkarni`. */
 function folderNameToTitle(folder: string): string {
   return folder.replace(/_/g, " ");
@@ -207,5 +216,24 @@ export function getJuryByYear(year: number) {
 }
 
 export function getPhotoFeature() {
-  return listImages("photo feature");
+  const images = listImages("photo feature");
+  const pinnedTitles = [
+    "shri vijay j darda ji",
+    "shri rajendra darda ji",
+    "shri devendra darda ji",
+  ];
+
+  const rank = new Map<string, number>();
+  pinnedTitles.forEach((title, idx) => rank.set(title, idx));
+
+  return [...images].sort((a, b) => {
+    const aRank = rank.get(normalizeForPriority(a.title));
+    const bRank = rank.get(normalizeForPriority(b.title));
+
+    if (aRank !== undefined && bRank !== undefined) return aRank - bRank;
+    if (aRank !== undefined) return -1;
+    if (bRank !== undefined) return 1;
+
+    return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+  });
 }

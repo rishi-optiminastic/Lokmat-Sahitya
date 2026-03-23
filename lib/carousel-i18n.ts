@@ -6,13 +6,19 @@ export type LocalizedSlide = CarouselSlide & {
   subtitle: string;
 };
 
+function titleFromSrc(src: string): string {
+  const file = src.split("/").pop() ?? "";
+  const decoded = decodeURIComponent(file).replace(/\.[^.]+$/, "");
+  return decoded.replace(/[-_]/g, " ").trim();
+}
+
 export function getLocalizedCarouselSlides(d: Dictionary): LocalizedSlide[] {
   return CAROUSEL_SLIDES.map((slide, i) => {
     const slideData = d.carousel.slides[i];
     return {
       ...slide,
-      title: slideData?.title ?? "",
-      subtitle: slideData?.subtitle ?? "",
+      title: slideData?.title ?? titleFromSrc(slide.src),
+      subtitle: slideData?.subtitle ?? d.carousel.subtitles[i] ?? d.home.eyebrow,
     };
   });
 }

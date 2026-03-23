@@ -67,6 +67,7 @@ export default async function Home({ params }: PageProps) {
               awardees={getEditionAwardeesDetailed(year)}
               jury={getJuryByYear(year)}
               d={d}
+              locale={locale}
             />
           ))}
         </div>

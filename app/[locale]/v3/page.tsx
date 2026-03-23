@@ -80,6 +80,7 @@ export default async function V3Page({ params }: PageProps) {
               awardees={getEditionAwardeesDetailed(year)}
               jury={getJuryByYear(year)}
               d={d}
+              locale={locale}
             />
           ))}
         </div>
