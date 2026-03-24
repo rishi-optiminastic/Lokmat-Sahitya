@@ -71,7 +71,7 @@ export default async function Home({ params }: PageProps) {
           ))}
         </div>
 
-        <VideoSection videos={SITE_VIDEOS} d={d} />
+        {/* <VideoSection videos={SITE_VIDEOS} d={d} /> */}
 
         <PhotoGallery images={photoFeature} d={d} />
       </main>
