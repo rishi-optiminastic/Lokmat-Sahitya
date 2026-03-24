@@ -38,8 +38,7 @@ export const metadata: Metadata = {
   description:
     "Lokmat Sahitya — digital library for editions, awardees, and festival moments.",
   icons: {
-    icon: "/favicon.jpeg",
-    apple: "/apple-icon.jpeg",
+    icon: "/icon.svg",
   },
 };
 
