@@ -66,7 +66,7 @@ const en: Dictionary = {
   },
   home: {
     eyebrow: "Heritage · Marathi literature",
-    title: "Where every award year finds its place",
+    title: "This is the Seventh year of this prestigious Award and information of all the Award winning books is available here. ",
     subtitle:
       "Browse editions from 2023 to 2026 — book covers, authors, jury portraits, and ceremony light — with clarity and room to breathe.",
   },
@@ -187,7 +187,7 @@ const mr: Dictionary = {
   },
   home: {
     eyebrow: "वारसा · मराठी साहित्य",
-    title: "प्रत्येक पुरस्कार वर्षासाठी एक विश्रांतीस्थान",
+    title: "लोकमत साहित्य पुरस्काराचे हे सातवे वर्ष. या सात वर्षांचे विजेते त्यांची पुस्तके, तुम्हाला इथे पाहता येतील.",
     subtitle:
       "२०२३ ते २०२६ पर्यंतचे अंक — पुस्तके, लेखक, ज्युरीच्या प्रतिमा आणि सोहळ्यातील क्षण — स्पष्टपणे व सहज वाचता येतील अशा मांडणीत.",
   },

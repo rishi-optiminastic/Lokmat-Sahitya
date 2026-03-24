@@ -16,7 +16,7 @@ type SwitcherProps = {
 };
 
 export function LanguageSwitcher({ variant = "default" }: SwitcherProps) {
-  const pathname = usePathname() ?? "/en";
+  const pathname = usePathname() ?? "/mr";
 
   const { current, restPath } = useMemo(() => {
     const parts = pathname.split("/").filter(Boolean);
@@ -27,7 +27,7 @@ export function LanguageSwitcher({ variant = "default" }: SwitcherProps) {
         restPath: parts.slice(1).join("/"),
       };
     }
-    return { current: "en" as Locale, restPath: parts.join("/") };
+    return { current: "mr" as Locale, restPath: parts.join("/") };
   }, [pathname]);
 
   const hrefFor = (locale: Locale) =>
