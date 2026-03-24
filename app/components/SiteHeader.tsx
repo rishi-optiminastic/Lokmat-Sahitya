@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "@/app/components/LanguageSwitcher";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
+import Image from "next/image";
 
 type Props = {
   locale: Locale;
@@ -33,13 +34,14 @@ export function SiteHeader({ locale, d }: Props) {
       className={`fixed inset-x-0 top-0 z-50  duration-300 ${headerBg}`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 md:px-6">
+        {/* <Image src="./icon.svg" alt="Lokmat Sahitya" width={30} height={30} /> */}
         <Link href={`/${locale}`} className="group flex min-w-0 flex-col leading-tight">
           <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-500 transition-colors group-hover:text-sky-600">
             {d.brand.lokmat}
           </span>
           <span className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
             {d.brand.sahitya}
-          </span>
+          </span> 
         </Link>
 
         <div className="flex flex-wrap items-center justify-end gap-2 md:gap-4">
@@ -57,12 +59,6 @@ export function SiteHeader({ locale, d }: Props) {
               {d.nav.video}
             </a>
           </nav>
-          {/* <Link
-            href={`/${locale}/ink`}
-            className="inline-flex shrink-0 rounded-full bg-sky-500/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-sky-700 ring-1 ring-sky-500/25 transition hover:bg-sky-500/15 sm:text-[11px]"
-          >
-            {d.designSwitch.toInk}
-          </Link> */}
           <LanguageSwitcher />
         </div>
       </div>

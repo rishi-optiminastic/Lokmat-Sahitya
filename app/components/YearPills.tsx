@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { EDITION_YEARS } from "@/lib/edition-years";
 
-const YEARS = [2023, 2024, 2025, 2026] as const;
+const YEARS = EDITION_YEARS;
 
 type Props = {
   ariaLabel: string;

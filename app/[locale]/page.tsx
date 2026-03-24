@@ -6,6 +6,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { VideoSection } from "../components/VideoSection";
 import { YearPills } from "../components/YearPills";
 import { getLocalizedCarouselSlides } from "@/lib/carousel-i18n";
+import { EDITION_YEARS } from "@/lib/edition-years";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { isLocale } from "@/lib/i18n/config";
 import {
@@ -14,8 +15,6 @@ import {
   getPhotoFeature,
 } from "@/lib/editions";
 import { SITE_VIDEOS } from "@/lib/site-videos";
-
-const YEARS = [2023, 2024, 2025, 2026] as const;
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -60,7 +59,7 @@ export default async function Home({ params }: PageProps) {
         </section>
 
         <div className="space-y-24 md:space-y-32">
-          {YEARS.map((year) => (
+          {EDITION_YEARS.map((year) => (
             <AwardYearSection
               key={year}
               year={year}
