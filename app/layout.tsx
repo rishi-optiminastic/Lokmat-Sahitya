@@ -6,6 +6,7 @@ import {
   Noto_Sans_Devanagari,
 } from "next/font/google";
 import { HtmlLang } from "./components/HtmlLang";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <HtmlLang />
         {children}
+        <Analytics />
       </body>
     </html>
   );
