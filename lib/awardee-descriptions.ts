@@ -75,11 +75,11 @@ export const AWARDEE_DETAILS: Record<string, AwardeeDetail> = {
     },
   },
 
-  "2026:dinkar manvar": {
+  "2026:Dinkar Manwar": {
     category: { en: "Poetry", mr: "कविता" },
     description: {
       mr: "दिनकर मनवर लिखित 'झेन्नाच्या कविता' हा मराठी कविता प्रकारातील एक वेगळा आणि विलक्षण प्रयोग आहे. स्त्रीच्या अंतरंगातल्या भावना त्यांच्या काव्यातून विलक्षण ताकदीने उतरल्या आहेत. गूढ, आदिम, अनाघ्रात भावनांचे तळात जाऊन केलेलं चित्रण प्रत्ययकारी आहे. स्त्रीच्या लैंगिक भावनांचा इतका धीट व मुक्त आविष्कार क्वचितच आढळून येतो. टॅबू ठरवल्या गेलेला, फारसा न बोलला जाणारा विषय कवीने संवेदनशीलतेनं हाताळला आहे. म्हणूनच कविता श्रेणीमध्ये या पुस्तकाला लोकमत साहित्य पुरस्कार देऊन सन्मानित करत आहोत.",
-      en: "\"Zennachya Kavita\" by Dinkar Manvar is a unique and extraordinary experiment in Marathi poetry. The innermost emotions of a woman emerge with striking force through these verses. The evocation of primal, untouched feelings — explored to their depths — is searingly real. Such bold and free expression of feminine sexuality is rare in Marathi literature; the poet handles this seldom-spoken subject with remarkable sensitivity.",
+      en: "\"Zennachya Kavita\" by Dinkar Manwar is a unique and extraordinary experiment in Marathi poetry. The innermost emotions of a woman emerge with striking force through these verses. The evocation of primal, untouched feelings — explored to their depths — is searingly real. Such bold and free expression of feminine sexuality is rare in Marathi literature; the poet handles this seldom-spoken subject with remarkable sensitivity.",
     },
   },
 
